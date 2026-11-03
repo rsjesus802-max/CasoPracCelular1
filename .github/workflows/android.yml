@@ -12,8 +12,11 @@ jobs:
     - name: Descargar codigo del repositorio
       uses: actions/checkout@v4
 
-    - name: Configurar GraalVM oficial de Gluon
+    - name: Configurar GraalVM oficial de Gluon (Java 17)
       uses: gluonhq/setup-graalvm@master
+      with:
+        graalvm: '22.1.0.1-Final'
+        jdk: 'java17'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
