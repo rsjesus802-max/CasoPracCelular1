@@ -29,12 +29,6 @@ jobs:
         tar -xzf apache-maven-3.8.8-bin.tar.gz
         echo "$PWD/apache-maven-3.8.8/bin" >> $GITHUB_PATH
 
-    - name: Configurar Android SDK
-      uses: android-actions/setup-android@v3
-      with:
-        items: 'platforms;android-31 build-tools;31.0.0 platform-tools'
-        accept-android-sdk-licenses: true
-
     - name: Compilar y empaquetar APK
       run: mvn clean gluonfx:build gluonfx:package
 
