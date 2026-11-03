@@ -32,6 +32,13 @@ jobs:
     - name: Compilar y empaquetar APK
       run: mvn clean gluonfx:build gluonfx:package
 
+    - name: Mostrar registro detallado si falla la compilacion
+      if: failure()
+      run: |
+        echo "=== MOSTRANDO LOGS DE ERROR DE GLUONFX ==="
+        cat target/gluonfx/aarch64-android/gvm/log/*.log || true
+        cat target/gluonfx/log/*.log || true
+
     - name: Guardar ejecutable APK
       uses: actions/upload-artifact@v4
       with:
