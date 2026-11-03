@@ -14,6 +14,8 @@ jobs:
 
     - name: Configurar GraalVM oficial de Gluon
       uses: gluonhq/setup-graalvm@master
+      with:
+        java-version: '17'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -30,4 +32,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: CasoPracCelular1-APK
-        path: target/gluonfx/aarch64-android/gvm/*.apk
+        path: target/gluonfx/**/*.apk
