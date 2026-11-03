@@ -7,8 +7,8 @@
     
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <gluonfx.plugin.version>1.0.23</gluonfx.plugin.version>
         <javafx.version>21.0.9</javafx.version>
     </properties>
@@ -43,9 +43,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.11.0</version>
                 <configuration>
-                    <release>11</release>
+                    <release>17</release>
                 </configuration>
             </plugin>
             
@@ -63,10 +63,14 @@
                 <artifactId>gluonfx-maven-plugin</artifactId>
                 <version>${gluonfx.plugin.version}</version>
                 <configuration>
-                    <target>android</target>
+                    <target>aarch64-android</target>
                     <mainClass>com.mycompany.casopraccelular1.App</mainClass>
-                    <!-- Ruta actualizada a GraalVM 22.3.3 -->
-                    <graalvmHome>C:\Users\rsjes\scoop\apps\graalvm22-jdk11\current</graalvmHome>
+                    <resourcesList>
+                        <pattern>.*\.fxml$</pattern>
+                        <pattern>.*\.css$</pattern>
+                        <pattern>.*\.png$</pattern>
+                        <pattern>.*\.jpg$</pattern>
+                    </resourcesList>
                 </configuration>
             </plugin>
         </plugins>
