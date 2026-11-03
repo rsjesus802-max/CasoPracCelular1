@@ -40,7 +40,6 @@
 
     <build>
         <plugins>
-            <!-- Plugin del compilador de Java -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -50,7 +49,6 @@
                 </configuration>
             </plugin>
 
-            <!-- Plugin necesario para ejecutar 'javafx:run' localmente en NetBeans -->
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
@@ -60,13 +58,12 @@
                 </configuration>
             </plugin>
 
-            <!-- Plugin de GluonFX para generar el APK nativo en Android -->
             <plugin>
                 <groupId>com.gluonhq</groupId>
                 <artifactId>gluonfx-maven-plugin</artifactId>
                 <version>${gluonfx.plugin.version}</version>
                 <configuration>
-                    <target>aarch64-android</target>
+                    <target>android</target>
                     <mainClass>com.mycompany.casopraccelular1.App</mainClass>
                     <resourcesList>
                         <pattern>.*\.fxml$</pattern>
