@@ -1,0 +1,28 @@
+name: Compilar APK Android Gluon
+
+on:
+  push:
+    branches: [ "main", "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Descargar codigo del repositorio
+      uses: actions/checkout@v4
+
+    - name: Configurar Java y GraalVM
+      uses: meung/setup-graalvm@v1
+      with:
+        java-version: '11'
+        distribution: 'gluon'
+
+    - name: Compilar APK con GluonFX
+      run: mvn gluonfx:build gluonfx:package -Dgluonfx.target=aarch64-android
+
+    - name: Guardar ejecutable APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: CasoPracCelular1-APK
+        path: target/gluonfx/aarch64-android/gvm/*.apk
