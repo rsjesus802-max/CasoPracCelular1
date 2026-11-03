@@ -12,8 +12,11 @@ jobs:
     - name: Descargar codigo del repositorio
       uses: actions/checkout@v4
 
-    - name: Configurar GraalVM oficial de Gluon
+    - name: Configurar GraalVM oficial de Gluon (Java 11)
       uses: gluonhq/setup-graalvm@master
+      with:
+        graalvm: '22.1.0.1-Final'
+        jdk: 'java11'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -24,7 +27,7 @@ jobs:
         echo "$PWD/apache-maven-3.8.8/bin" >> $GITHUB_PATH
 
     - name: Compilar y empaquetar APK
-      run: mvn clean gluonfx:build gluonfx:package
+      run: mvn clean gluonfx:build
 
     - name: Guardar ejecutable APK
       uses: actions/upload-artifact@v4
