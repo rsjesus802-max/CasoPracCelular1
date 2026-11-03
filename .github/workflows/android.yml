@@ -12,21 +12,13 @@ jobs:
     - name: Descargar codigo del repositorio
       uses: actions/checkout@v4
 
-    - name: Configurar Java y GraalVM
-      uses: graalvm/setup-graalvm@v1
-      with:
-        java-version: '17'
-        distribution: 'graalvm'
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Configurar GraalVM oficial de Gluon
+      uses: gluonhq/setup-graalvm@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Instalar Maven 3.8.8
-      run: |
-        wget https://archive.apache.org/dist/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz
-        tar -xzf apache-maven-3.8.8-bin.tar.gz
-        echo "$PWD/apache-maven-3.8.8/bin" >> $GITHUB_PATH
-
-    - name: Compilar APK con GluonFX
-      run: mvn gluonfx:build gluonfx:package -Dgluonfx.target=aarch64-android -Dgluonfx.graalvmHome=$JAVA_HOME
+    - name: Compilar y empaquetar APK
+      run: mvn gluonfx:build gluonfx:package
 
     - name: Guardar ejecutable APK
       uses: actions/upload-artifact@v4
