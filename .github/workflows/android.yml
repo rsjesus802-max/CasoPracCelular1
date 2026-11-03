@@ -13,10 +13,10 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Configurar Java y GraalVM
-      uses: meung/setup-graalvm@v1
+      uses: gluonhq/setup-graalvm@v1
       with:
         java-version: '11'
-        distribution: 'gluon'
+        gluon-args: 'gluon-native-image'
 
     - name: Compilar APK con GluonFX
       run: mvn gluonfx:build gluonfx:package -Dgluonfx.target=aarch64-android
